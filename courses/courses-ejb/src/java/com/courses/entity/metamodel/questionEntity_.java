@@ -14,7 +14,7 @@ import javax.persistence.metamodel.StaticMetamodel;
  */
 @StaticMetamodel(questionEntity_.class)
 public class questionEntity_ {
-    public static volatile SingularAttribute<questionEntity_, Integer> idCourses;
     public static volatile SingularAttribute<questionEntity_, Integer> idQuestion;
+    public static volatile SingularAttribute<questionEntity_, Integer> idCourses;
     public static volatile SingularAttribute<questionEntity_, String> responseList;
 }

@@ -19,7 +19,7 @@ class userEntity_ {
         public static volatile SingularAttribute<userEntity_, String> username;
         public static volatile SingularAttribute<userEntity_, String> password;
         public static volatile SingularAttribute<userEntity_, String> email;
-        public static volatile SingularAttribute<userEntity_, String> lastConnection;
-        public static volatile SingularAttribute<userEntity_, String> created;
+        public static volatile SingularAttribute<userEntity_, Integer> lastConnection;
+        public static volatile SingularAttribute<userEntity_, Integer> created;
         
 }
