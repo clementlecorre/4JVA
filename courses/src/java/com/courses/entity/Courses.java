@@ -20,18 +20,19 @@ import javax.persistence.Table;
  * @author clement
  */
 @Entity
-@Table(name = "courses")
-public class courses implements Serializable {
+@Table(name = "Courses")
+public class Courses implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @ManyToOne
     private int idCourses;
     private String label;
     private float rank;
     private String details;
 
-    public courses(String label, float rank, String details) {
+    public Courses() {}
+    
+    public Courses(String label, float rank, String details) {
         this.label = label;
         this.rank = rank;
         this.details = details;

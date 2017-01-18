@@ -19,8 +19,8 @@ import javax.persistence.Table;
  * @author clement
  */
 @Entity
-@Table(name = "view")
-public class view implements Serializable {
+@Table(name = "View")
+public class View implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +28,9 @@ public class view implements Serializable {
     private int dateView;
     private int percent;
     
-    public view(int dateView, int percent) {
+    public View() {}
+    
+    public View(int dateView, int percent) {
         this.dateView = dateView;
         this.percent = percent;
     }

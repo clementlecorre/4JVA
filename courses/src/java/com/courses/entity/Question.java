@@ -12,7 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,18 +21,21 @@ import javax.persistence.Table;
  * @author clement
  */
 @Entity
-@Table(name = "question")
-public class question implements Serializable {
+@Table(name = "Question")
+public class Question implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idQuestion;
     
-    @OneToOne
+//   @OneToOne
+//   @JoinColumn(name="idCourses", table = "Courses")
     private int idCourses;    
     private String responseList;
 
-    public question(int idCourses, String responseList) {
+    public Question() {}
+    
+    public Question(int idCourses, String responseList) {
         this.idCourses = idCourses;
         this.responseList = responseList;
     }

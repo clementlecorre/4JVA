@@ -19,7 +19,7 @@ import javax.persistence.Table;
  * @author clement
  */
 @Entity
-@Table(name = "User")
+@Table(name = "CoursesUser")
 public class User implements Serializable {
 
     @Id
@@ -31,9 +31,7 @@ public class User implements Serializable {
     private int lastConnection;
     private int created;
     
-    public User(){
-        
-    }
+    public User() {}
     
     public User(String username, String password, String email, int lastConnection, int created) {
         this.username = username;

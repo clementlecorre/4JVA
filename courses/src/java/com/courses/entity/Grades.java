@@ -19,16 +19,18 @@ import javax.persistence.Table;
  * @author clement
  */
 @Entity
-@Table(name = "grades")
-public class grades implements Serializable {
+@Table(name = "Grades")
+public class Grades implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idUser;
     private int dateExam;
     private int percent;
-
-    public grades(int dateExam, int percent) {
+    
+    public Grades() {}
+    
+    public Grades(int dateExam, int percent) {
         this.dateExam = dateExam;
         this.percent = percent;
     }
