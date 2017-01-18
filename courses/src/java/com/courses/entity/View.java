@@ -19,7 +19,7 @@ import javax.persistence.Table;
  * @author clement
  */
 @Entity
-@Table(name = "View")
+@Table(name = "ViewCourses")
 public class View implements Serializable {
     
     @Id
