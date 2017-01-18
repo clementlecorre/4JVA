@@ -20,7 +20,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "user")
-public class user implements Serializable {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,8 +30,12 @@ public class user implements Serializable {
     private String email;
     private int lastConnection;
     private int created;
-
-    public user(String username, String password, String email, int lastConnection, int created) {
+    
+    public User(){
+        
+    }
+    
+    public User(String username, String password, String email, int lastConnection, int created) {
         this.username = username;
         this.password = password;
         this.email = email;

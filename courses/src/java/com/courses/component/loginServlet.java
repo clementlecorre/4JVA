@@ -80,34 +80,19 @@ public class loginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-      
-        PrintWriter writer = response.getWriter();
-        String htmlRespone;
-
-        boolean loginValidation = register.loginValidation(username, password);
-        if(loginValidation){
-         
-            // build HTML code
-            htmlRespone = "<html>";
-            htmlRespone += "<h2>Your username is: " + username + "<br/>";      
-            htmlRespone += "Your password is: " + password + "</h2>";    
-            htmlRespone += "</html>";
-
-            // return response
-            writer.println(htmlRespone);
-        }else{
         
-            htmlRespone = "<html>";
-        htmlRespone += "<h2>Your username is: wrong <br/>";      
-        htmlRespone += "Your password is: also wrong </h2>";    
-        htmlRespone += "</html>";
-         
-        // return response
-        writer.println(htmlRespone);
+        request.setAttribute("username", username);
+        request.setAttribute("password", password);
+        
+        boolean loginValidation = register.loginValidation(username, password);
+        
+        if(loginValidation){
+           getServletContext().getRequestDispatcher("/jsp/profile.jsp").forward(request, response);
+        }else{
+            request.getRequestDispatcher("/").forward(request, response);    
         }
     }
 
