@@ -13,13 +13,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.courses.services.registerSessionBean;
+import com.courses.services.register;
+import javax.servlet.annotation.WebServlet;
 
 
 /**
  *
  * @author maxime
  */
+@WebServlet(name = "loginServlet", urlPatterns = {"/loginServlet"})
 public class loginServlet extends HttpServlet {
 
     /**
@@ -33,7 +35,7 @@ public class loginServlet extends HttpServlet {
      */
     
     @EJB
-    private registerSessionBean register;
+    private register register;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -84,13 +86,9 @@ public class loginServlet extends HttpServlet {
         String password = request.getParameter("password");
       
         PrintWriter writer = response.getWriter();
-         
-            // build HTML code
-            String htmlRespone = "<html>";
-            htmlRespone += "<h2>Your username is: " + username + "<br/>";      
-            htmlRespone += "Your password is: " + password + "</h2>";    
-            htmlRespone += "</html>";
-            boolean loginValidation = register.businessMethod(username, password);
+        String htmlRespone;
+
+        boolean loginValidation = register.loginValidation(username, password);
         if(loginValidation){
          
             // build HTML code
