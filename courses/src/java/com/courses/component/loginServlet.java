@@ -5,6 +5,8 @@
  */
 package com.courses.component;
 
+import com.courses.criteria.UserManagement;
+import com.courses.entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.courses.services.register;
+import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
 
 
@@ -36,6 +39,8 @@ public class loginServlet extends HttpServlet {
     
     @EJB
     private register register;
+    @Inject
+    private UserManagement pUser;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -88,7 +93,9 @@ public class loginServlet extends HttpServlet {
         request.setAttribute("password", password);
         
         boolean loginValidation = register.loginValidation(username, password);
-        
+        User cl3m = new User("clement", "clement", "email", 0, 0);
+       
+        User createUser = this.pUser.createUser(cl3m);
         if(loginValidation){
            getServletContext().getRequestDispatcher("/jsp/profile.jsp").forward(request, response);
         }else{
