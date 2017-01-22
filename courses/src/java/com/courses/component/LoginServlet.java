@@ -7,13 +7,13 @@ package com.courses.component;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.courses.services.register;
+import com.courses.services.LoginService;
+import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
 
 
@@ -21,8 +21,8 @@ import javax.servlet.annotation.WebServlet;
  *
  * @author maxime
  */
-@WebServlet(name = "loginServlet", urlPatterns = {"/loginServlet"})
-public class loginServlet extends HttpServlet {
+@WebServlet(name = "loginServlet", urlPatterns = {"/Login"})
+public class LoginServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,8 +34,8 @@ public class loginServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     
-    @EJB
-    private register register;
+    @Inject
+    private LoginService loginService;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -84,10 +84,7 @@ public class loginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         
-        request.setAttribute("username", username);
-        request.setAttribute("password", password);
-        
-        boolean loginValidation = register.loginValidation(username, password);
+        boolean loginValidation = loginService.loginValidation(username, password);
         
         if(loginValidation){
            getServletContext().getRequestDispatcher("/jsp/profile.jsp").forward(request, response);

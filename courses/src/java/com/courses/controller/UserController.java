@@ -29,11 +29,11 @@ public class UserController {
     private List<SelectItem> selectItems;
     
     
-    
-    public String create() {
-        userService.save(user);
-        return "manager_home?faces-redirect=true";
-    }
+//    
+//    public String create() {
+//        userService.save(user);
+//        return "manager_home?faces-redirect=true";
+//    }
 
     public User getUser() {
         if(null == user) {
@@ -43,14 +43,14 @@ public class UserController {
         return user;
     }
 
-    public List<SelectItem> getSelectItems() {
-        if(null == selectItems) {
-            selectItems = new ArrayList<SelectItem>();
-            for(User user : userService.getAll()) {
-                selectItems.add(new SelectItem(user, user.getUsername()));
-            }
-        }
-        
-        return selectItems;
-    }
+//    public List<SelectItem> getSelectItems() {
+//        if(null == selectItems) {
+//            selectItems = new ArrayList<SelectItem>();
+//            for(User user : userService.getAll()) {
+//                selectItems.add(new SelectItem(user, user.getUsername()));
+//            }
+//        }
+//        
+//        return selectItems;
+//    }
 }

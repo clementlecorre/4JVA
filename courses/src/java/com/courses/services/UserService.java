@@ -19,19 +19,19 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class UserService {
     
-    @PersistenceContext
-    private EntityManager em;
-    
-    public User save(User user) {
-        em.persist(user);
-        return user;
-    }
-    
-    public List<User> getAll() {
-        return em.createQuery("SELECT c FROM User c").getResultList();
-    }
-
-    public Object findById(long id) {
-        return em.find(User.class, id);
-    }
+//    @PersistenceContext
+//    private EntityManager em;
+//    
+//    public User save(User user) {
+//        em.persist(user);
+//        return user;
+//    }
+//    
+//    public List<User> getAll() {
+//        return em.createQuery("SELECT c FROM User c").getResultList();
+//    }
+//
+//    public Object findById(long id) {
+//        return em.find(User.class, id);
+//    }
 }
