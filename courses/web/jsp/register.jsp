@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%@include file="../header.jsp" %>
+        <%@include file="header.jsp" %>
         <section>
             <form name="registerForm" method="post" action="Register">
                 Username: <input type="text" name="username"/> <br/>

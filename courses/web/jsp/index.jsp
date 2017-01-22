@@ -13,7 +13,7 @@ and open the template in the editor.
     <body>
         <%@include file="header.jsp" %>
         <section>
-            <form name="loginForm" method="post" action="Login">
+            <form name="loginForm" method="post" action="/build/Login">
                 Username: <input type="text" name="username"/> <br/>
                 Password: <input type="password" name="password"/> <br/>
                 <input type="submit" value="Login" />

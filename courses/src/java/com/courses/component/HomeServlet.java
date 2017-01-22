@@ -5,10 +5,8 @@
  */
 package com.courses.component;
 
-import com.courses.entity.User;
-import com.courses.criteria.UserManagement;
 import java.io.IOException;
-import javax.inject.Inject;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author maxime
  */
-@WebServlet(name = "RegisterServlet", urlPatterns = {"/Register"})
-public class RegisterServlet extends HttpServlet {
+@WebServlet(name = "HomeServlet", urlPatterns = {"/"})
+public class HomeServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,13 +29,10 @@ public class RegisterServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    @Inject
-    private UserManagement userManager;
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/jsp/register.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/jsp/index.jsp").forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -66,16 +61,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String email = request.getParameter("email");
-        
-        User addUser = new User(username, password, email, 0, 0);
-       
-        this.userManager.createUser(addUser);
-        
-        getServletContext().getRequestDispatcher("/").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
