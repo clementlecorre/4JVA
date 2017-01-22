@@ -75,7 +75,7 @@ public class RegisterServlet extends HttpServlet {
        
         this.userManager.createUser(addUser);
         
-        getServletContext().getRequestDispatcher("/").forward(request, response);
+        getServletContext().getRequestDispatcher("/home").forward(request, response);
     }
 
     /**
