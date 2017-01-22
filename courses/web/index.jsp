@@ -11,16 +11,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-               <header>
-            <div>Courses - Supinfo</div>
-                <nav>
-                    <ul>
-                        <li><a href="Login">Home</a></li>
-                        <li>Courses</li>
-                        <li><a href="Register">Register</a></li>
-                    </ul>
-                </nav>
-        </header>
+        <%@include file="header.jsp" %>
         <section>
             <form name="loginForm" method="post" action="Login">
                 Username: <input type="text" name="username"/> <br/>
