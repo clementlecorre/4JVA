@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+         getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
     }
 
     /**
@@ -77,7 +77,8 @@ public class LoginServlet extends HttpServlet {
         if(loginValidation){
            getServletContext().getRequestDispatcher("/jsp/profile.jsp").forward(request, response);
         }else{
-            getServletContext().getRequestDispatcher("/").forward(request, response);    
+            request.setAttribute( "errorMsg", "Invalid credentials.. " );
+            getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);    
         }
     }
 

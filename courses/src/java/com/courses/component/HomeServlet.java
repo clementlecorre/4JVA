@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author maxime
  */
-@WebServlet(name = "HomeServlet", urlPatterns = {"/"})
+@WebServlet(name = "HomeServlet", urlPatterns = {"/home"})
 public class HomeServlet extends HttpServlet {
 
     /**
@@ -31,7 +31,7 @@ public class HomeServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/jsp/index.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/jsf/index.jsf").forward(request, response);
         
     }
 

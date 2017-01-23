@@ -1,13 +1,17 @@
 <%@include file="inc/header.jsp" %>
-<section>
+<%@include file="inc/nav.jsp" %>
+
+<h3 class="text-center"> Register now for has access lot of courses online </h3>
+<div class="container">
+    <p style="color:red" ><c:out value="${errorMsg}"/></p>
     <form name="registerForm" method="post" action="Register">
-        Username: <input type="text" name="username"/> <br/>
-        Password: <input type="password" name="password"/> <br/>
-        Email : <input type="email" name="email"/> <br/>
-        <input type="submit" value="Register" />
-    </form>
-</section>
-<div>
-    <p>Take your courses online right now !</p>
-</div>
+        <span id="reauth-email" class="reauth-email"></span>
+        <input name="username" type="text"  class="form-control" placeholder="Username" required autofocus>
+        <input name="email" type="email" class="form-control" placeholder="Email address" required>
+        <input name="password" type="password"  class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Register now</button>
+    </form><!-- /form -->
+</div><!-- /container -->
+</br>
+</br>
 <%@include file="inc/footer.jsp" %>

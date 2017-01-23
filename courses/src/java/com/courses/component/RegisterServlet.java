@@ -7,6 +7,7 @@ package com.courses.component;
 
 import com.courses.entity.User;
 import com.courses.criteria.UserManagement;
+import com.courses.services.LoginService;
 import java.io.IOException;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -34,6 +35,8 @@ public class RegisterServlet extends HttpServlet {
     
     @Inject
     private UserManagement userManager;
+    @Inject
+    private LoginService loginService;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -71,11 +74,13 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String email = request.getParameter("email");
         
-        User addUser = new User(username, password, email, 0, 0);
+        String encrypPassword = loginService.base64Encode(password);
+        
+        User addUser = new User(username, encrypPassword, email, 0, 0);
        
         this.userManager.createUser(addUser);
         
-        getServletContext().getRequestDispatcher("/").forward(request, response);
+        getServletContext().getRequestDispatcher("/home").forward(request, response);
     }
 
     /**
