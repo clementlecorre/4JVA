@@ -1,4 +1,6 @@
-  <!-- NavBar-->
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">  <!-- NavBar-->
   <nav class="navbar-default" role="navigation">
     <div class="container">
       <div class="navbar-header">
@@ -17,11 +19,15 @@
           <li class="menuItem"><a href="${pageContext.request.contextPath}/home">Home</a></li>
           <li class="menuItem"><a href="${pageContext.request.contextPath}/Login">Login</a></li>
           
-          <li class="menuItem"><a href="#screen">Screenshot</a></li>
-          <li class="menuItem"><a href="#credits">Credits</a></li>
-          <li class="menuItem"><a href="#contact">Disconnect</a></li>
+          
+          <li class="menuItem"><a href="${pageContext.request.contextPath}/Register">Register</a></li>
+          
+          
+          <li class="menuItem"><a href="${pageContext.request.contextPath}/CoursesList">Courses</a></li>
+          <li class="menuItem"><a href="${pageContext.request.contextPath}/Quiz">Quiz</a></li>
         </ul>
       </div>
 
     </div>
   </nav>
+</ui:component>

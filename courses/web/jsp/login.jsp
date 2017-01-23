@@ -9,7 +9,7 @@
 <h3 class="text-center"> Log in</h3>
 <div class="container">
     <p style="color:red" ><c:out value="${errorMsg}"/></p>
-    <form name="registerForm" method="post" action="Register">
+    <form name="loginForm" method="post" action="Login">
         <span id="reauth-email" class="reauth-email"></span>
         <input name="username" type="text"  class="form-control" placeholder="Username" required autofocus>
         <input name="password" type="password"  class="form-control" placeholder="Password" required>

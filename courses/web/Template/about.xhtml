@@ -1,10 +1,6 @@
-<%-- 
-    Document   : about
-    Created on : 22 janv. 2017, 22:02:31
-    Author     : clement
---%>
-
-<!-- What is -->
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <div id="whatis" class="content-section-b" style="border-top: 0">
   <div class="container">
 
@@ -17,19 +13,19 @@
     <div class="row">
 
       <div class="col-sm-4 wow fadeInDown text-center">
-        <img class="rotate" src="${pageContext.request.contextPath}/static/img/icon/printer.svg" alt="Generic placeholder image">
+        <h:graphicImage class="rotate" library="img" name="icon/printer.svg" />
         <h3>Best Libraries</h3>
         <p class="lead">Libraries are some of the most complete and incredible tributes to human knowledge imaginable, and with their range of resources. </p>
       </div><!-- /.col-lg-4 -->
 
       <div class="col-sm-4 wow fadeInDown text-center">
-        <img  class="rotate" src="${pageContext.request.contextPath}/static/img/icon/bulb.svg" alt="Generic placeholder image">
+        <h:graphicImage class="rotate" library="img" name="icon/bulb.svg" />
         <h3>Quiz</h3>
         <p class="lead">Quiz elaborated with the best teacher of the world.</p>
       </div><!-- /.col-lg-4 -->
 
       <div class="col-sm-4 wow fadeInDown text-center">
-        <img  class="rotate" src="${pageContext.request.contextPath}/static/img/icon/medal.svg" alt="Generic placeholder image">
+          <h:graphicImage class="rotate" library="img" name="icon/medal.svg" />
         <h3>Grades</h3>
         <p class="lead">Good ratings for the best of the best. </p>
       </div><!-- /.col-lg-4 -->
@@ -39,3 +35,4 @@
 
   </div>
 </div>
+</ui:component>

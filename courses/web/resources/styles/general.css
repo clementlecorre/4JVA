@@ -108,7 +108,7 @@ opacity: 0.95 !important;
 filter: alpha(opacity=95) !important;
 }
 
-.item .img-responsive {cursor:url(../img/cross.png),auto;}
+.item .img-responsive {cursor:url(img/cross.png.xhtml),auto;}
 
 /* Preloader */
 #preloader {
@@ -246,7 +246,7 @@ color: #ECEBEB;
 	padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
 	padding-bottom: 50px;
 	color: #f8f8f8;
-	background: url(../img/bg/bg.jpg) no-repeat center center;
+	background: url(img/bg/bg.jpg.xhtml) no-repeat center center;
 	background-size: cover;
 	text-align: center;
 }

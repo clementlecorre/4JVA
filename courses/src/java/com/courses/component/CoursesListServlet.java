@@ -5,8 +5,14 @@
  */
 package com.courses.component;
 
+import com.courses.criteria.CoursesManagement;
+import com.courses.criteria.UserManagement;
+import com.courses.entity.Courses;
+import com.courses.services.LoginService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,11 +21,14 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author maxime
+ * @author clement
  */
-@WebServlet(name = "HomeServlet", urlPatterns = {"/home"})
-public class HomeServlet extends HttpServlet {
-
+@WebServlet(name = "CoursesList", urlPatterns = {"/CoursesList"})
+public class CoursesListServlet extends HttpServlet {
+    
+    @Inject
+    private CoursesManagement coursesManagement;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -31,8 +40,6 @@ public class HomeServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/jsf/index.jsf").forward(request, response);
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -48,6 +55,9 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        List<Courses> courses = coursesManagement.getCoursesList();
+        request.setAttribute( "coursesList", courses);
+        getServletContext().getRequestDispatcher("/jsp/coursesList.jsp").forward(request, response);
     }
 
     /**
@@ -63,15 +73,5 @@ public class HomeServlet extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

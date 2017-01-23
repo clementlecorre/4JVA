@@ -7,12 +7,14 @@ package com.courses.services;
 
 import com.courses.criteria.UserManagement;
 import com.courses.entity.User;
-import com.sun.xml.ws.rx.rm.protocol.wsrm200702.SequenceAcknowledgementElement;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.inject.Inject;
-import org.apache.jasper.tagplugins.jstl.ForEach;
+import javax.xml.bind.DatatypeConverter;
+import org.apache.xml.security.utils.Base64;
 
 /**
  *
@@ -37,7 +39,7 @@ public class LoginService {
         
         for(final User user : userList){
             if(user.getUsername().equals(username)){
-                if(user.getPassword().equals(password)){
+                if(user.getPassword().equals(this.base64Encode(password))){
                     isValid = true;
                 }
             }
@@ -45,7 +47,12 @@ public class LoginService {
         
         return isValid;
     }
+    
+     public static String base64Encode(String token) {
+         return DatatypeConverter.printBase64Binary(token.getBytes());
+    }
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    public static String base64Decode(String token) {
+       return new String(DatatypeConverter.parseBase64Binary(token));
+    }
 }

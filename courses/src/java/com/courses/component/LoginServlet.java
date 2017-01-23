@@ -77,7 +77,8 @@ public class LoginServlet extends HttpServlet {
         if(loginValidation){
            getServletContext().getRequestDispatcher("/jsp/profile.jsp").forward(request, response);
         }else{
-            getServletContext().getRequestDispatcher("/home").forward(request, response);    
+            request.setAttribute( "errorMsg", "Invalid credentials.. " );
+            getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);    
         }
     }
 
