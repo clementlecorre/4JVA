@@ -6,8 +6,6 @@
 package com.courses.criteria;
 
 import com.courses.entity.Courses;
-import static com.courses.entity.Courses_.idCourses;
-import com.courses.entity.Question;
 import com.courses.entity.User;
 import java.util.List;
 import javax.ejb.LocalBean;

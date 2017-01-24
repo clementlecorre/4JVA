@@ -62,7 +62,7 @@ public class QuestionManagement {
 		CriteriaBuilder cb = this.em.getCriteriaBuilder();
 		CriteriaQuery<Question> query = cb.createQuery(Question.class);
 		Root e = query.from(Question.class);
-                query.where(cb.greaterThanOrEqualTo(e.get("coursesId"), coursesID));
+                query.where(cb.greaterThanOrEqualTo(e.get("idCourses"), coursesID));
 		return this.em.createQuery(query).getResultList();
 	}
 }

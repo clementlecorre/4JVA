@@ -24,8 +24,9 @@
                 <th>Viewed</th>
               </tr>
             </thead>
-            <tbody>   
-                <ui:repeat value="#{coursesController.coursesList}" var="courses">
+            <tbody> 
+                <h:outputText value="Courses not avalable"  rendered="#{coursesController.coursesList == null}"></h:outputText>
+                <ui:repeat value="#{coursesController.coursesList}" var="courses" rendered="#{coursesController.coursesList !=null}">
                 <tr>
                     <th><h:outputText value="#{courses.label}"></h:outputText> </th>
                     <th><h:outputText value="#{courses.rank}"></h:outputText> </th>

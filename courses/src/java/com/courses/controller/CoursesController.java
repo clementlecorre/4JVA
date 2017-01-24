@@ -8,10 +8,9 @@ package com.courses.controller;
 import com.courses.criteria.CoursesManagement;
 import com.courses.entity.Courses;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.inject.Inject;
 
 /**
  *
@@ -20,7 +19,7 @@ import javax.inject.Inject;
 @ManagedBean
 @SessionScoped
 public class CoursesController {
-    @Inject
+    @EJB
     private CoursesManagement cm;
     private List<Courses> coursesList;
     private Courses c;
@@ -44,6 +43,8 @@ public class CoursesController {
 
     public void loadingCourses() {
         c = this.cm.getQuestionListByCoursesId(this.coursesId);
+        c.setDetails(c.getDetails().replaceAll("(\\\\r\\\\n|\\\\n)", "\\\n"));
+        
     }
     
     
@@ -51,6 +52,6 @@ public class CoursesController {
         return coursesList =  this.cm.getCoursesList();
     }
     public CoursesController() { }
-  
+    
     
 }
