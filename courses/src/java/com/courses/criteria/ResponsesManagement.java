@@ -5,7 +5,7 @@
  */
 package com.courses.criteria;
 
-import com.courses.entity.Grades;
+import com.courses.entity.Responses;
 import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -23,39 +23,38 @@ import javax.transaction.Transactional;
  */
 @Stateless
 @LocalBean
-public class GradesManagement {
-
-        @PersistenceContext(unitName = "courses")
+public class ResponsesManagement {
+@PersistenceContext(unitName = "courses")
 	private EntityManager em;
 	
         @Transactional
-	public Grades createGrades(Grades grades) {
-                //Save grades Object to unitName
-		this.em.persist(grades);
-		return grades;
+	public Responses createResponses(Responses responses) {
+                //Save responses Object to unitName
+		this.em.persist(responses);
+		return responses;
 	}
         
         @Transactional
-        public void deleteGrades(int id) {
+        public void deleteResponses(int id) {
 		CriteriaBuilder cb = this.em.getCriteriaBuilder();
 		
 		// create delete
-		CriteriaDelete<Grades> delete = cb.createCriteriaDelete(Grades.class);
+		CriteriaDelete<Responses> delete = cb.createCriteriaDelete(Responses.class);
 		
 		// set the root class
-		Root e = delete.from(Grades.class);
+		Root e = delete.from(Responses.class);
 		
 		// set where clause
-		delete.where(cb.lessThanOrEqualTo(e.get("id"), id));
+		delete.where(cb.lessThanOrEqualTo(e.get("idResponse"), id));
 		
 		// perform update
 		this.em.createQuery(delete).executeUpdate();
 	}
         @Transactional
-        public List<Grades> getGradesList() {
+        public List<Responses> getResponsesList() {
 		CriteriaBuilder cb = this.em.getCriteriaBuilder();
-		CriteriaQuery<Grades> query = cb.createQuery(Grades.class);
-		Root e = query.from(Grades.class);
+		CriteriaQuery<Responses> query = cb.createQuery(Responses.class);
+		Root e = query.from(Responses.class);
 		return this.em.createQuery(query).getResultList();
 	}
 }
