@@ -30,17 +30,15 @@ public class Question implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idQuestion;
-    
-//   @OneToOne
-//   @JoinColumn(name="idCourses", table = "Courses")
-    private int idCourses;    
-    private String responseList;
+    @Id
+    private int idCourses;
+    private String questionText;
 
     public Question() {}
     
-    public Question(int idCourses, String responseList) {
+    public Question(int idCourses, String questionText) {
         this.idCourses = idCourses;
-        this.responseList = responseList;
+        this.questionText = questionText;
     }
 
     public int getIdQuestion() {
@@ -52,15 +50,15 @@ public class Question implements Serializable {
     }
 
     public String getResponseList() {
-        return responseList;
+        return questionText;
     }
 
     public void setIdCourses(int idCourses) {
         this.idCourses = idCourses;
     }
 
-    public void setResponseList(String responseList) {
-        this.responseList = responseList;
+    public void setResponseList(String questionText) {
+        this.questionText = questionText;
     }
 
 }

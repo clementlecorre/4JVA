@@ -8,6 +8,7 @@ package com.courses.entity;
 
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,33 +29,52 @@ public class View implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;   
-    private int dateView;
-    private int percent;
+    private Timestamp dateView;
+    private Timestamp dateQuiz;
+    private int percentQuiz;
     
     public View() {}
     
-    public View(int dateView, int percent) {
-        this.dateView = dateView;
-        this.percent = percent;
-    }
-
-    public void setPercent(int percent) {
-        this.percent = percent;
-    }
-    
-    public int getPercent() {
-        return percent;
-    }
-    
-    public void setDateView(int dateView) {
+    public View(Timestamp dateView) {
         this.dateView = dateView;
     }
+    
+    public View( Timestamp dateQuiz, int percentQuiz){
+        this.dateQuiz = dateQuiz;
+        this.percentQuiz = percentQuiz;
+    }
+    
+    public View(Timestamp dateView, Timestamp dateQuiz, int percentQuiz){
+        this.dateView = dateView;
+        this.dateQuiz = dateQuiz;
+        this.percentQuiz = percentQuiz;
+    }
+    
+    public void setDateView(Timestamp dateView) {
+        this.dateView = dateView;
+    }
 
-    public int getDateView() {
+    public Timestamp getDateView() {
         return dateView;
     }
 
     public int getId() {
         return id;
+    }
+    
+    public Timestamp getDateQuiz() {
+        return dateQuiz;
+    }
+
+    public void setDateQuiz(Timestamp dateQuiz) {
+        this.dateQuiz = dateQuiz;
+    }
+
+    public int getPercentQuiz() {
+        return percentQuiz;
+    }
+
+    public void setPercentQuiz(int percentQuiz) {
+        this.percentQuiz = percentQuiz;
     }
 }
