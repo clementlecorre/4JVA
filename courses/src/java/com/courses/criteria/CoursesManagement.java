@@ -27,7 +27,7 @@ import javax.transaction.Transactional;
 @LocalBean
 public class CoursesManagement {
 
-@PersistenceContext(unitName = "courses")
+        @PersistenceContext(unitName = "courses")
 	private EntityManager em;
 	
         @Transactional
@@ -77,5 +77,16 @@ public class CoursesManagement {
 		CriteriaQuery<Courses> query = cb.createQuery(Courses.class);
 		Root e = query.from(Courses.class);
 		return this.em.createQuery(query).getResultList();
+	}
+        
+        @Transactional
+        public Courses getQuestionListByCoursesId(int coursesID) {
+		CriteriaBuilder cb = this.em.getCriteriaBuilder();
+		CriteriaQuery<Courses> query = cb.createQuery(Courses.class);
+		Root e = query.from(Courses.class);
+                query.where(cb.equal(e.get("idCourses"), coursesID));
+                Courses c;
+                c = this.em.createQuery(query).getSingleResult();
+		return c;
 	}
 }
