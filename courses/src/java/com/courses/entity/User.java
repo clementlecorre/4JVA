@@ -8,10 +8,13 @@ package com.courses.entity;
 
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 /**
@@ -20,6 +23,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "CoursesUser")
+@Inheritance (strategy=InheritanceType.TABLE_PER_CLASS)
 public class User implements Serializable {
 
     @Id
@@ -28,12 +32,12 @@ public class User implements Serializable {
     private String username;
     private String password;
     private String email;
-    private int lastConnection;
-    private int created;
+    private Timestamp lastConnection;
+    private Timestamp created;
     
     public User() {}
     
-    public User(String username, String password, String email, int lastConnection, int created) {
+    public User(String username, String password, String email, Timestamp lastConnection, Timestamp created) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -58,11 +62,11 @@ public class User implements Serializable {
         return email;
     }
 
-    public int getLastConnection() {
+    public Timestamp getLastConnection() {
         return lastConnection;
     }
 
-    public int getCreated() {
+    public Timestamp getCreated() {
         return created;
     }
 
@@ -78,11 +82,11 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public void setLastConnection(int lastConnection) {
+    public void setLastConnection(Timestamp lastConnection) {
         this.lastConnection = lastConnection;
     }
 
-    public void setCreated(int created) {
+    public void setCreated(Timestamp created) {
         this.created = created;
     }
     
