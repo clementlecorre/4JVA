@@ -15,16 +15,23 @@
             <c:viewParam name="coursesID" value="#{quizController.coursesId}" />
             <c:viewAction action="#{quizController.loadingQuestions}" />
         </c:metadata>
-        
+      
         <ui:insert name="nav">
             <ui:include src="Template/nav.xhtml" />
         </ui:insert>
-        <h:outputText rendered="#{quizController.q == null}"><h1>Quiz not avalable</h1></h:outputText>
-        <ui:repeat value="#{quizController.q}" var="question"  rendered="#{quizController.q != null}">
-            <pre>
-            <h:outputText value="#{question.responseList}"></h:outputText>
-            </pre>
+        <h3>Quiz <h:outputText value="#{coursesController.c.label}"></h:outputText></h3>
+        <h:outputText rendered="#{quizController.questionList == null}"><h1>Quiz not avalable</h1></h:outputText>
+        <h:form>
+        <ui:repeat value="#{quizController.questionList}" var="question"  rendered="#{quizController.questionList != null}">
+            <h5><h:outputText value="#{question.responseList}"></h:outputText></h5>
+            <h:selectManyCheckbox value="#{quizController.responseUser}">
+   			<c:selectItems class="btn btn-success active" value="#{quizController.loadingResponses(question.idQuestion)}" />
+            </h:selectManyCheckbox>
         </ui:repeat>
+        <h:commandButton class="btn btn-lg mybutton_cyano wow animated animated pull-right" value="Submit Quiz !! " action="quizResult" />
+      </h:form>
+        <br/>
+        <br/>   
         <ui:insert name="footer">
             <ui:include src="Template/footer.xhtml" />
         </ui:insert>

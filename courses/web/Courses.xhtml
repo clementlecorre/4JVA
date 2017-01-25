@@ -19,9 +19,9 @@
         <ui:insert name="nav">
             <ui:include src="Template/nav.xhtml" />
         </ui:insert>
-                <h:link value="Open Quiz" outcome="quiz" class="btn btn-lg mybutton_cyano wow fadeIn animated animated pull-right" >
+                <h:link value="Take Quiz" outcome="quiz" class="btn btn-lg mybutton_cyano wow fadeIn animated animated pull-right" >
             <c:param name="coursesID" value="#{coursesController.coursesId}" />
-        <i class="fa fa-angle-double-down"></i>
+        <i class="fa fa-external-link"></i>
         </h:link>
         <h1><h:outputText class="text-center" value="#{coursesController.c.label}"></h:outputText></h1>
 

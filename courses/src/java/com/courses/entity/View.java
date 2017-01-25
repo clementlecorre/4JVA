@@ -29,25 +29,37 @@ public class View implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;   
+    private int idCourses;   
     private Timestamp dateView;
     private Timestamp dateQuiz;
     private int percentQuiz;
     
     public View() {}
-    
-    public View(Timestamp dateView) {
+
+    public View(int idCourses, Timestamp dateView, Timestamp dateQuiz, int percentQuiz) {
+        this.idCourses = idCourses;
+        this.dateView = dateView;
+        this.dateQuiz = dateQuiz;
+        this.percentQuiz = percentQuiz;
+    }
+
+    public View(int idCourses, Timestamp dateView) {
+        this.idCourses = idCourses;
         this.dateView = dateView;
     }
-    
-    public View( Timestamp dateQuiz, int percentQuiz){
+
+    public View(int idCourses, Timestamp dateQuiz, int percentQuiz) {
+        this.idCourses = idCourses;
         this.dateQuiz = dateQuiz;
         this.percentQuiz = percentQuiz;
     }
     
-    public View(Timestamp dateView, Timestamp dateQuiz, int percentQuiz){
-        this.dateView = dateView;
-        this.dateQuiz = dateQuiz;
-        this.percentQuiz = percentQuiz;
+    public int getIdCourses() {
+        return idCourses;
+    }
+
+    public void setIdCourses(int idCourses) {
+        this.idCourses = idCourses;
     }
     
     public void setDateView(Timestamp dateView) {
