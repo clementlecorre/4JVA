@@ -4,17 +4,21 @@
       template="Template/logged.xhtml">
     
     <ui:define name="content">
+        <br />
+        <h3 class="text-center"> Register</h3>
+        <br />
         <h:form>
-            <h:outputLabel for="username" value="Username :"/>
-            <h:inputText id="username" value="#{registerController.user.username}" />
-            
-            <h:outputLabel for="password" value="Password :"/>
-            <h:inputSecret id="password" value="#{registerController.user.password}" />
-            
-            <h:outputLabel for="email" value="Email :"/>
-            <h:inputText id="email" value="#{registerController.user.email}" />
-            
-            <h:commandButton value="Register" action="#{registerController.register()}" />
+            <h:outputLabel for="username" value="Username : " />
+            <h:inputText id="username" value="#{registerController.user.username}" class="form-control" /><br />
+            <br />
+            <h:outputLabel for="password" value="Password : "/>
+            <h:inputSecret id="password" value="#{registerController.user.password}" class="form-control" /><br />
+            <br />
+            <h:outputLabel for="email" value="Email : "/>
+            <h:inputText id="email" value="#{registerController.user.email}" class="form-control" /><br />
+            <br />
+            <h:commandButton value="Register" action="#{registerController.register()}" class="btn btn-lg btn-primary btn-block btn-signin"/>
         </h:form>
+        <br /><br />
     </ui:define>
 </ui:composition>
