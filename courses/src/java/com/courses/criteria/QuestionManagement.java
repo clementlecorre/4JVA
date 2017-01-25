@@ -45,7 +45,7 @@ public class QuestionManagement {
 		Root e = delete.from(Question.class);
 		
 		// set where clause
-		delete.where(cb.lessThanOrEqualTo(e.get("id"), id));
+		delete.where(cb.equal(e.get("id"), id));
 		
 		// perform update
 		this.em.createQuery(delete).executeUpdate();

@@ -5,12 +5,15 @@
  */
 package com.courses.controller;
 
-import com.courses.criteria.CoursesManagement;
 import com.courses.criteria.QuestionManagement;
 import com.courses.criteria.ResponsesManagement;
+import com.courses.criteria.ViewManagement;
 import com.courses.entity.Question;
 import com.courses.entity.Responses;
+import com.courses.entity.View;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -29,11 +32,11 @@ public class QuizController {
     @EJB
     private ResponsesManagement rm;
     @EJB
-    private CoursesManagement cm;
+    private ViewManagement vm;
     private List<Question> questionList;
     private String[] responseUser;
     private List<String[]> listResponseUser = new ArrayList<String[]>();
-    private int coursesId;
+    private int coursesId = 0;
 
     public String[] getResponseUser() {
         return responseUser;
@@ -45,7 +48,7 @@ public class QuizController {
     }
 
     public List<String[]> getListResponseUser() {
-        this.listResponseUser.removeAll(questionList);
+        this.listResponseUser.removeAll(listResponseUser);
         return listResponseUser;
     }
 
@@ -74,8 +77,9 @@ public class QuizController {
 
     public String checkReponse(int idQuesion) {
         int NbValidate = 0, responsesTrue = 0;
+        List<Responses> responseList = null;
         for (Question question : questionList) {
-            List<Responses> responseList = this.rm.getResponsesListByQuestionId(question.getIdCourses());
+            responseList = this.rm.getResponsesListByQuestionId(question.getIdCourses());
             for (Responses responses : responseList) {
                 if (responses.getIsTrue()) {
                             responsesTrue++;
@@ -91,6 +95,9 @@ public class QuizController {
                 }
             }
         }
+        Date date = new Date();
+        Timestamp tt = new Timestamp(date.getTime());
+        vm.updateQuiz(this.coursesId, tt, (NbValidate * 100) / responsesTrue );
         if (responsesTrue == NbValidate) {
             //setting rank
             return "Congratulation";

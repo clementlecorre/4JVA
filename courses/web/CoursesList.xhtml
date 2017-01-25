@@ -20,7 +20,7 @@
             <thead>
               <tr>
                 <th>Courses name</th>
-                <th>Your rank</th>
+                <th>Courses rank</th>
                 <th>Viewed</th>
               </tr>
             </thead>
@@ -30,7 +30,7 @@
                 <tr>
                     <th><h:outputText value="#{courses.label}"></h:outputText> </th>
                     <th><h:outputText value="#{courses.rank}"></h:outputText> </th>
-                    <th>No</th>
+                    <th><h:outputText value="#{coursesController.loadingViewedStatus(courses.idCourses)}"></h:outputText> </th>
                     <th> 
                         <h:link value="Take Courses" outcome="Courses" class="btn btn-sm mybutton_cyano wow fadeIn animated animated" >
                         <f:param name="coursesID" value="#{courses.idCourses}" />

@@ -45,7 +45,7 @@ public class ResponsesManagement {
 		Root e = delete.from(Responses.class);
 		
 		// set where clause
-		delete.where(cb.lessThanOrEqualTo(e.get("idResponse"), id));
+		delete.where(cb.equal(e.get("idResponse"), id));
 		
 		// perform update
 		this.em.createQuery(delete).executeUpdate();
