@@ -46,7 +46,8 @@ public class LoginController {
             Timestamp tt = new Timestamp(date.getTime());
             loggedUser.setLastConnection(tt);
             um.updateUserProfil(loggedUser, loggedUser.getId());
-            return "index.xhtml";
+            
+            return "home.xhtml?faces-redirect=true";
         }else{
             FacesMessage msg = new FacesMessage("Failed to log");
             FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -55,7 +56,7 @@ public class LoginController {
         username = null;
         password = null;
         
-        return null;
+        return "login.xhtml";
     }
     
     public String getPassword() {
@@ -78,4 +79,8 @@ public class LoginController {
         return loggedUser;
     }
 
+    public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "index.xhtml?faces-redirect=true";
+    }
 }

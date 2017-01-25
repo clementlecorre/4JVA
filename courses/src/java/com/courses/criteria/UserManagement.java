@@ -6,6 +6,7 @@
 package com.courses.criteria;
 
 import com.courses.entity.User;
+import com.courses.services.MD5Services;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -117,15 +118,23 @@ public class UserManagement {
         @Transactional
         public User login(String username, String password){
             
+            String HashedPassword = null;
+            // MD5 salt password
+            try{
+                HashedPassword = MD5Services.HashedPaswword(password);
+            }catch(Exception e){
+                
+            }
+            
             CriteriaBuilder cb = this.em.getCriteriaBuilder();
             CriteriaQuery<User> query = cb.createQuery(User.class);
             Root e = query.from(User.class);
             
             query.where(cb.equal(e.get("username"), username));
             List<User> users = em.createQuery(query).getResultList();
-            if(users != null){
+            if(users != null && password != null){
                 for(User user:users){
-                    if(user.getUsername().equals(username) && user.getPassword().equals(password)){
+                    if(user.getUsername().equals(username) && user.getPassword().equals(HashedPassword)){
                         return user;
                     }
                 }

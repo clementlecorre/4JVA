@@ -26,7 +26,6 @@ public class Responses implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idResponse;
-    @Id
     private int idQuestion;
     private String responseText;  
     private Boolean isTrue;

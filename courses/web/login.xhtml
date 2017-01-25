@@ -4,14 +4,18 @@
       template="Template/logged.xhtml">
     
     <ui:define name="content">
+        <br />
+        <h3 class="text-center"> Log in</h3>
+        <br />
         <h:form>
-            <h:outputLabel for="username" value="Username :"/>
-            <h:inputText id="username" value="#{loginController.username}" />
-            
-            <h:outputLabel for="password" value="Password :"/>
-            <h:inputSecret id="password" value="#{loginController.password}" />
-            
-            <h:commandButton value="Login" action="#{loginController.login()}" />
+            <h:outputLabel for="username" value="Username : " />
+            <h:inputText id="username" value="#{loginController.username}" class="form-control" /><br />
+            <br />
+            <h:outputLabel for="password" value="Password : "/>
+            <h:inputSecret id="password" value="#{loginController.password}" class="form-control" /><br />
+            <br />
+            <h:commandButton value="Login" action="#{loginController.login()}" class="btn btn-lg btn-primary btn-block btn-signin" />
         </h:form>
+        <br /> <br />
     </ui:define>
 </ui:composition>
