@@ -57,4 +57,12 @@ public class ResponsesManagement {
 		Root e = query.from(Responses.class);
 		return this.em.createQuery(query).getResultList();
 	}
+        @Transactional
+        public List<Responses> getResponsesListByQuestionId(int idQuestion) {
+		CriteriaBuilder cb = this.em.getCriteriaBuilder();
+		CriteriaQuery<Responses> query = cb.createQuery(Responses.class);
+		Root e = query.from(Responses.class);
+                query.where(cb.equal(e.get("idQuestion"), idQuestion));
+		return this.em.createQuery(query).getResultList();
+	}
 }
