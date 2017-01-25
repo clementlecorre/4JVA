@@ -42,11 +42,10 @@ public class UserFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         
-        LoginController userController =
-            (LoginController) httpRequest.getSession().getAttribute("userController");
+        LoginController loginController = (LoginController) httpRequest.getSession().getAttribute("loginController");
         
-        if(null != userController) {
-            User user = userController.getLoggedUser();
+        if(null != loginController) {
+            User user = loginController.getLoggedUser();
             if(user instanceof User) {
                 chain.doFilter(request, response);
                 return;

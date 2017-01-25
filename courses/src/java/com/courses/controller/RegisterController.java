@@ -8,7 +8,7 @@ package com.courses.controller;
 
 import com.courses.entity.User;
 import com.courses.criteria.UserManagement;
-import com.courses.services.MD5Services;
+import com.courses.services.Base64;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -33,7 +33,7 @@ public class RegisterController {
     
     public String register(){
         try{
-            user.setPassword(MD5Services.HashedPaswword(user.getPassword()));
+            user.setPassword(Base64.base64Encode(user.getPassword()));
             
         }catch(Exception e){
             

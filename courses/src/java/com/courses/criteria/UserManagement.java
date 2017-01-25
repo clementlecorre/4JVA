@@ -6,7 +6,7 @@
 package com.courses.criteria;
 
 import com.courses.entity.User;
-import com.courses.services.MD5Services;
+import com.courses.services.Base64;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -121,7 +121,7 @@ public class UserManagement {
             String HashedPassword = null;
             // MD5 salt password
             try{
-                HashedPassword = MD5Services.HashedPaswword(password);
+                HashedPassword = Base64.base64Encode(password);
             }catch(Exception e){
                 
             }
