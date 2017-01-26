@@ -7,7 +7,7 @@
     <h:head>
         <title><ui:insert name="title" /></title>
         <ui:insert name="headinsert">
-            <ui:include src="Template/headinsert.xhtml" />
+            <ui:include src="../Template/headinsert.xhtml" />
         </ui:insert>
     </h:head>
     <h:body>        
@@ -17,7 +17,7 @@
         </c:metadata>
         
         <ui:insert name="nav">
-            <ui:include src="Template/nav.xhtml" />
+            <ui:include src="../Template/nav.xhtml" />
         </ui:insert>
                 <h:link value="Take Quiz" outcome="quiz" class="btn btn-lg mybutton_cyano wow fadeIn animated animated pull-right" >
             <c:param name="coursesID" value="#{coursesController.coursesId}" />
@@ -47,7 +47,7 @@
         markdownContainer.innerHTML = newNode;
         </script>
         <ui:insert name="footer">
-            <ui:include src="Template/footer.xhtml" />
+            <ui:include src="../Template/footer.xhtml" />
         </ui:insert>
     
     </h:body>

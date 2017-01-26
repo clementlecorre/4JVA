@@ -47,7 +47,7 @@ public class LoginController {
             loggedUser.setLastConnection(tt);
             um.updateUserProfil(loggedUser, loggedUser.getId());
             
-            return "auth/home.xhtml?faces-redirect=true";
+            return "CoursesList.xhtml?faces-redirect=true";
         }else{
             FacesMessage msg = new FacesMessage("Failed to log");
             FacesContext.getCurrentInstance().addMessage(null, msg);

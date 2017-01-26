@@ -7,7 +7,6 @@
 
 <%@include file="inc/nav.jsp" %>
 
-
 <table>
   <c:forEach items="${coursesList}" var="item">
     <tr>
