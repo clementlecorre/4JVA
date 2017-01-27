@@ -24,7 +24,11 @@
           
           
           <li class="menuItem"><a href="CoursesList.xhtml">Courses</a></li>
-          <li class="menuItem"><a href="quiz.xhtml">Quiz</a></li>
+          <h:form>
+            <h:commandLink action="#{loginController.logout()}">
+                <h:outputText class="menuItem" value="logout" />
+            </h:commandLink>
+          </h:form>
         </ul>
       </div>
 
