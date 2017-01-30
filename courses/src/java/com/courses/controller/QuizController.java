@@ -88,9 +88,12 @@ public class QuizController {
             for(Answers answer : answers){
                 int nbTrue = 0, nbFalse = 0, trueFound = 0; 
                 
-                if(answer.getIsTrue()){
-                    trueFound++;
+                for(Answers a : answers){
+                    if(a.getIsTrue()){
+                        trueFound++;
+                    }
                 }
+
                 // If lenght < 0 no user answer
                 if(listAnswerUser.get(cpt).length > 0){
                     
@@ -114,38 +117,13 @@ public class QuizController {
             cpt++;
         }
         
-        
-        
-        
-//        int NbValidate = 0, answersTrue = 0;
-//        
-//        List<Answers> answerList = null;
-//        
-//        for (Question question : questionList) {
-//            answerList = this.am.getAnswersListByQuestionId(question.getIdCourses());
-//            for (Answers answers : answerList) {
-//                if (answers.getIsTrue()) {
-//                            answersTrue++;
-//                }
-//                
-//                for (String[] answerForQuestion : listAnswerUser) {
-//                    for (String string : answerForQuestion) {
-//                        if (answers.getAnswerText().equals(string)) {
-//                            if (answers.getIsTrue()) {
-//                                NbValidate++;
-//                            } 
-//                        }
-//                    }
-//                }
-//                
-//            }
-//        }
 
         Date date = new Date();
         Timestamp tt = new Timestamp(date.getTime());
         if(nbValid > 0){
-            int percent = (cpt * 100) / nbValid;
+            int percent = (nbValid * 100) / cpt;
             vm.updateQuiz(this.coursesId, tt, percent );
+            this.listAnswerUser.clear();
             if (percent >= 80) {
                 //setting rank
                 return "Congratulation" + percent + "%";
