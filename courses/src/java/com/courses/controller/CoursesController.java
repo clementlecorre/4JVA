@@ -5,8 +5,8 @@
  */
 package com.courses.controller;
 
-import com.courses.criteria.CoursesManagement;
-import com.courses.criteria.ViewManagement;
+import com.courses.services.CoursesServices;
+import com.courses.services.ViewsServices;
 import com.courses.entity.Courses;
 import com.courses.entity.View;
 import static com.courses.entity.View_.dateView;
@@ -25,9 +25,9 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class CoursesController {
     @EJB
-    private CoursesManagement cm;
+    private CoursesServices cm;
     @EJB
-    private ViewManagement vm;
+    private ViewsServices vm;
     private List<Courses> coursesList;
     private Courses c;
     private int coursesId;

@@ -19,28 +19,28 @@ import javax.persistence.Table;
  * @author maxime
  */
 @Entity
-@Table(name = "Responses")
+@Table(name = "Answers")
 @Inheritance (strategy=InheritanceType.TABLE_PER_CLASS)
-public class Responses implements Serializable {
+public class Answers implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idResponse;
+    private int idAnswer;
     private int idQuestion;
-    private String responseText;  
+    private String answerText;  
     private Boolean isTrue;
 
-    public Responses() {
+    public Answers() {
     }
 
-    public Responses(int idQuestion, String responseText, Boolean isTrue) {
+    public Answers(int idQuestion, String answerText, Boolean isTrue) {
         this.idQuestion = idQuestion;
-        this.responseText = responseText;
+        this.answerText = answerText;
         this.isTrue = isTrue;
     }
 
-    public int getIdResponse() {
-        return idResponse;
+    public int getIdAnswer() {
+        return idAnswer;
     }
 
     public int getIdQuestion() {
@@ -51,12 +51,12 @@ public class Responses implements Serializable {
         this.idQuestion = idQuestion;
     }
 
-    public String getResponseText() {
-        return responseText;
+    public String getAnswerText() {
+        return answerText;
     }
 
-    public void setResponseText(String responseText) {
-        this.responseText = responseText;
+    public void setAnswerText(String answerText) {
+        this.answerText = answerText;
     }
 
     public Boolean getIsTrue() {

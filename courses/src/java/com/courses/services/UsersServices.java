@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.courses.criteria;
+package com.courses.services;
 
 import com.courses.entity.User;
 import com.courses.services.Base64;
@@ -29,7 +29,7 @@ import javax.transaction.Transactional;
  */
 @Stateless
 @LocalBean
-public class UserManagement {
+public class UsersServices {
 
         @PersistenceContext(unitName = "courses")
 	private EntityManager em;

@@ -7,7 +7,7 @@
     <class>com.courses.entity.Question</class>
     <class>com.courses.entity.User</class>
     <class>com.courses.entity.View</class>
-    <class>com.courses.entity.Responses</class>
+    <class>com.courses.entity.Answers</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.courses.criteria;
+package com.courses.services;
 
-import com.courses.entity.Responses;
+import com.courses.entity.Answers;
 import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -23,45 +23,45 @@ import javax.transaction.Transactional;
  */
 @Stateless
 @LocalBean
-public class ResponsesManagement {
+public class AnswersServices {
 @PersistenceContext(unitName = "courses")
 	private EntityManager em;
 	
         @Transactional
-	public Responses createResponses(Responses responses) {
+	public Answers createAnswers(Answers responses) {
                 //Save responses Object to unitName
 		this.em.persist(responses);
 		return responses;
 	}
         
         @Transactional
-        public void deleteResponses(int id) {
+        public void deleteAnswers(int id) {
 		CriteriaBuilder cb = this.em.getCriteriaBuilder();
 		
 		// create delete
-		CriteriaDelete<Responses> delete = cb.createCriteriaDelete(Responses.class);
+		CriteriaDelete<Answers> delete = cb.createCriteriaDelete(Answers.class);
 		
 		// set the root class
-		Root e = delete.from(Responses.class);
+		Root e = delete.from(Answers.class);
 		
 		// set where clause
-		delete.where(cb.equal(e.get("idResponse"), id));
+		delete.where(cb.equal(e.get("idAnswer"), id));
 		
 		// perform update
 		this.em.createQuery(delete).executeUpdate();
 	}
         @Transactional
-        public List<Responses> getResponsesList() {
+        public List<Answers> getAnswersList() {
 		CriteriaBuilder cb = this.em.getCriteriaBuilder();
-		CriteriaQuery<Responses> query = cb.createQuery(Responses.class);
-		Root e = query.from(Responses.class);
+		CriteriaQuery<Answers> query = cb.createQuery(Answers.class);
+		Root e = query.from(Answers.class);
 		return this.em.createQuery(query).getResultList();
 	}
         @Transactional
-        public List<Responses> getResponsesListByQuestionId(int idQuestion) {
+        public List<Answers> getAnswersListByQuestionId(int idQuestion) {
 		CriteriaBuilder cb = this.em.getCriteriaBuilder();
-		CriteriaQuery<Responses> query = cb.createQuery(Responses.class);
-		Root e = query.from(Responses.class);
+		CriteriaQuery<Answers> query = cb.createQuery(Answers.class);
+		Root e = query.from(Answers.class);
                 query.where(cb.equal(e.get("idQuestion"), idQuestion));
 		return this.em.createQuery(query).getResultList();
 	}

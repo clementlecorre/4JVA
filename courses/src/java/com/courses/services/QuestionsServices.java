@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.courses.criteria;
+package com.courses.services;
 
 import com.courses.entity.Question;
 import java.util.List;
@@ -23,7 +23,7 @@ import javax.transaction.Transactional;
  */
 @Stateless
 @LocalBean
-public class QuestionManagement {
+public class QuestionsServices {
 @PersistenceContext(unitName = "courses")
 	private EntityManager em;
 	

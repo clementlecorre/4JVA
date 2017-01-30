@@ -5,11 +5,11 @@
  */
 package com.courses.controller;
 
-import com.courses.criteria.QuestionManagement;
-import com.courses.criteria.ResponsesManagement;
-import com.courses.criteria.ViewManagement;
+import com.courses.services.QuestionsServices;
+import com.courses.services.AnswersServices;
+import com.courses.services.ViewsServices;
 import com.courses.entity.Question;
-import com.courses.entity.Responses;
+import com.courses.entity.Answers;
 import com.courses.entity.View;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -28,32 +28,32 @@ import javax.faces.bean.SessionScoped;
 public class QuizController {
 
     @EJB
-    private QuestionManagement qm;
+    private QuestionsServices qm;
     @EJB
-    private ResponsesManagement rm;
+    private AnswersServices am;
     @EJB
-    private ViewManagement vm;
+    private ViewsServices vm;
     private List<Question> questionList;
-    private String[] responseUser;
-    private List<String[]> listResponseUser = new ArrayList<String[]>();
+    private String[] answerUser;
+    private List<String[]> listAnswerUser = new ArrayList<String[]>();
     private int coursesId = 0;
 
-    public String[] getResponseUser() {
-        return responseUser;
+    public String[] getAnswerUser() {
+        return answerUser;
     }
 
-    public void setResponseUser(String[] responseUser) {
-        this.responseUser = responseUser;
-        this.listResponseUser.add(responseUser);
+    public void setAnswerUser(String[] answerUser) {
+        this.answerUser = answerUser;
+        this.listAnswerUser.add(answerUser);
     }
 
-    public List<String[]> getListResponseUser() {
-        this.listResponseUser.removeAll(listResponseUser);
-        return listResponseUser;
+    public List<String[]> getListAnswerUser() {
+        this.listAnswerUser.removeAll(listAnswerUser);
+        return listAnswerUser;
     }
 
-    public void setListResponseUser(List<String[]> listResponseUser) {
-        this.listResponseUser = listResponseUser;
+    public void setListAnswerUser(List<String[]> listAnswerUser) {
+        this.listAnswerUser = listAnswerUser;
     }
 
     /**
@@ -66,43 +66,94 @@ public class QuizController {
         questionList = this.qm.getQuestionListByCoursesId(this.coursesId);
     }
 
-    public List<String> loadingResponses(int idQuesion) {
-        List<Responses> responseList = this.rm.getResponsesListByQuestionId(idQuesion);
-        List<String> response = new ArrayList<String>();
-        for (Responses r : responseList) {
-            response.add(r.getResponseText());
+    public List<String> loadingAnswers(int idQuesion) {
+        List<Answers> answerList = this.am.getAnswersListByQuestionId(idQuesion);
+        List<String> answer = new ArrayList<String>();
+        for (Answers r : answerList) {
+            answer.add(r.getAnswerText());
         }
-        return response;
+        return answer;
     }
 
-    public String checkReponse(int idQuesion) {
-        int NbValidate = 0, responsesTrue = 0;
-        List<Responses> responseList = null;
-        for (Question question : questionList) {
-            responseList = this.rm.getResponsesListByQuestionId(question.getIdCourses());
-            for (Responses responses : responseList) {
-                if (responses.getIsTrue()) {
-                            responsesTrue++;
+    public String checkAnswer(int idQuesion) {
+        int cpt = 0, nbValid = 0;      
+        
+        // Get all Question for courses
+        for(Question question : questionList){
+            
+            // Get all Answer for One question
+            List<Answers> answers = this.am.getAnswersListByQuestionId(question.getIdQuestion());
+            
+            //For each answer for one question
+            for(Answers answer : answers){
+                int nbTrue = 0, nbFalse = 0, trueFound = 0; 
+                
+                if(answer.getIsTrue()){
+                    trueFound++;
                 }
-                for (String[] responseForQuestion : listResponseUser) {
-                    for (String string : responseForQuestion) {
-                        if (responses.getResponseText().equals(string)) {
-                            if (responses.getIsTrue()) {
-                                NbValidate++;
-                            } 
+                // If lenght < 0 no user answer
+                if(listAnswerUser.get(cpt).length > 0){
+                    
+                    // For all user answers for question(cpt)
+                    for(String an : listAnswerUser.get(cpt)){
+                        
+                        if(an.equals(answer.getAnswerText())){
+                            if(answer.getIsTrue()){
+                                nbTrue++;
+                            }else{
+                                nbFalse++;
+                            }
+                            
                         }
+                    }
+                    if(nbTrue == trueFound && nbFalse == 0){
+                        nbValid++;
                     }
                 }
             }
+            cpt++;
         }
+        
+        
+        
+        
+//        int NbValidate = 0, answersTrue = 0;
+//        
+//        List<Answers> answerList = null;
+//        
+//        for (Question question : questionList) {
+//            answerList = this.am.getAnswersListByQuestionId(question.getIdCourses());
+//            for (Answers answers : answerList) {
+//                if (answers.getIsTrue()) {
+//                            answersTrue++;
+//                }
+//                
+//                for (String[] answerForQuestion : listAnswerUser) {
+//                    for (String string : answerForQuestion) {
+//                        if (answers.getAnswerText().equals(string)) {
+//                            if (answers.getIsTrue()) {
+//                                NbValidate++;
+//                            } 
+//                        }
+//                    }
+//                }
+//                
+//            }
+//        }
+
         Date date = new Date();
         Timestamp tt = new Timestamp(date.getTime());
-        vm.updateQuiz(this.coursesId, tt, (NbValidate * 100) / responsesTrue );
-        if (responsesTrue == NbValidate) {
-            //setting rank
-            return "Congratulation";
-        } else {
-            return "No correct :( you have " + (NbValidate * 100) / responsesTrue + "%";
+        if(nbValid > 0){
+            int percent = (cpt * 100) / nbValid;
+            vm.updateQuiz(this.coursesId, tt, percent );
+            if (percent >= 80) {
+                //setting rank
+                return "Congratulation" + percent + "%";
+            } else {
+                return "No correct :( you have " + percent + "%";
+            }
+        }else{
+            return "How you cannot have better than 0 ?";
         }
     }
 

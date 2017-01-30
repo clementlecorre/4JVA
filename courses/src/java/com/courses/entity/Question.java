@@ -49,7 +49,7 @@ public class Question implements Serializable {
         return idCourses;
     }
 
-    public String getResponseList() {
+    public String getAnswerList() {
         return questionText;
     }
 
@@ -57,7 +57,7 @@ public class Question implements Serializable {
         this.idCourses = idCourses;
     }
 
-    public void setResponseList(String questionText) {
+    public void setAnswerList(String questionText) {
         this.questionText = questionText;
     }
 

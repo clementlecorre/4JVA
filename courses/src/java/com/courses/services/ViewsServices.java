@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.courses.criteria;
+package com.courses.services;
 
 import com.courses.entity.View;
 import java.sql.Timestamp;
@@ -23,7 +23,7 @@ import javax.transaction.Transactional;
  */
 @Stateless
 @LocalBean
-public class ViewManagement {
+public class ViewsServices {
 
     @PersistenceContext(unitName = "courses")
     private EntityManager em;

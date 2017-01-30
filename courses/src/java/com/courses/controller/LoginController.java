@@ -7,7 +7,7 @@
 package com.courses.controller;
 
 import com.courses.entity.User;
-import com.courses.criteria.UserManagement;
+import com.courses.services.UsersServices;
 import java.sql.Timestamp;
 import java.util.Date;
 import javax.ejb.EJB;
@@ -26,7 +26,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class LoginController {
     
     @EJB
-    private UserManagement um;
+    private UsersServices um;
     private User user;
     
     @NotEmpty
