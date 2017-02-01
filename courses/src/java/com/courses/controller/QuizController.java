@@ -117,12 +117,12 @@ public class QuizController {
             cpt++;
         }
         
-
+        int userId=0;
         Date date = new Date();
         Timestamp tt = new Timestamp(date.getTime());
         if(nbValid > 0){
             int percent = (nbValid * 100) / cpt;
-            vm.updateQuiz(this.coursesId, tt, percent );
+            vm.updateQuiz(this.coursesId, userId, tt, percent );
             this.listAnswerUser.clear();
             if (percent >= 80) {
                 //setting rank
