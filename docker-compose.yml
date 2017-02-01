@@ -1,0 +1,8 @@
+version: '2'
+services:
+  glassfish:
+    build: .
+    ports:
+      - "8080:8080"
+      - "4848:4848"
+      - "1527:1527"
