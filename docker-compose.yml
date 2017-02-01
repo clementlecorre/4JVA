@@ -4,10 +4,5 @@ services:
     build: .
     ports:
       - "8080:8080"
-  db:
-    image: mariadb:10.0
-    environment:
-      MYSQL_ROOT_PASSWORD : coucou
-      MYSQL_DATABASE : coursesdb
-    ports :
-      - 3306:3306
+      - "4848:4848"
+      - "1527:1527"
