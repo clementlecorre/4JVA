@@ -1,7 +1,8 @@
 # 4JVA
 
 
-Run only db
-```
-docker-compose up db
-```
+
+## Libs requirement
+
+* EclipseLink-ModelGen (JPA 2.1)
+* EclipseLink (JPA 2.1)

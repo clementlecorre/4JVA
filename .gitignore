@@ -1,9 +1,7 @@
 /courses/nbproject/private/
-/courses/courses-war/nbproject/private/
-/courses/courses-ejb/nbproject/private/
-/courses/courses-ejb/build/
-/courses/courses-ejb/dist/
-/courses/courses-war/dist/
-/courses/courses-war/build/
 /courses/dist/
-/courses/build/
+/courses/build/empty
+/courses/build/web
+courses/nbproject/build-impl.xml
+courses/nbproject/genfiles.properties
+courses/nbproject/project.properties
