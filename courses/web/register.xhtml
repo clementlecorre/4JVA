@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      template="Template/logged.xhtml">
+    
+    <ui:define name="content">
+        <br />
+        <h3 class="text-center"> Register</h3>
+        <br />
+        <h:form>
+            <h:outputLabel for="username" value="Username : " />
+            <h:inputText id="username" value="#{registerController.user.username}" class="form-control" /><br />
+            <br />
+            <h:outputLabel for="password" value="Password : "/>
+            <h:inputSecret id="password" value="#{registerController.user.password}" class="form-control" /><br />
+            <br />
+            <h:outputLabel for="email" value="Email : "/>
+            <h:inputText id="email" value="#{registerController.user.email}" class="form-control" /><br />
+            <br />
+            <h:commandButton value="Register" action="#{registerController.register()}" class="btn btn-lg btn-primary btn-block btn-signin"/>
+        </h:form>
+        <br /><br />
+    </ui:define>
+</ui:composition>
