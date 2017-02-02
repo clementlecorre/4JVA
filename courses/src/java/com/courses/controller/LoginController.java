@@ -7,6 +7,7 @@
 package com.courses.controller;
 
 import com.courses.entity.User;
+import com.courses.services.CoursesServices;
 import com.courses.services.UsersServices;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -28,6 +29,7 @@ public class LoginController {
     @EJB
     private UsersServices um;
     private User user;
+    private CoursesController cc;
     
     @NotEmpty
     private String username;
@@ -81,6 +83,7 @@ public class LoginController {
 
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "/courses/index.xhtml?faces-redirect=true";
+        loggedUser = null;
+        return "index.xhtml?faces-redirect=true";
     }
 }

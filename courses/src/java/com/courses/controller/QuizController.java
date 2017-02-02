@@ -125,8 +125,8 @@ public class QuizController {
             vm.updateQuiz(this.coursesId, userId, tt, percent );
             this.listAnswerUser.clear();
             if (percent >= 80) {
-                //setting rank
-                return "Congratulation" + percent + "%";
+                System.out.println("Congratulation " + percent + "%");
+                return "Congratulation " + percent + "%";
             } else {
                 return "No correct :( you have " + percent + "%";
             }

@@ -36,7 +36,7 @@ public class CoursesController {
     public Courses getC() {
         return c;
     }
-
+    
     public void setC(Courses c) {
         this.c = c;
     }
@@ -65,15 +65,15 @@ public class CoursesController {
     public String loadingViewedStatus(int coursesId, int userId ) {
         if (userId != 0) {
             view = vm.getViewByCoursesAndUser(coursesId, userId);
-        } else {
-            view = vm.getViewByCoursesId(coursesId);
-        }
-        view = vm.getViewByCoursesId(coursesId);
-        if (view.getDateView() == null) {
-            return "No";
-        } else {
-            return view.getDateView().toString();
-        }
+            if (view.getDateView() == null) {
+                return "No";
+            } else {
+                return view.getDateView().toString();
+            }
+        }else{
+            return "no";
+        }  
+
 
     }
 

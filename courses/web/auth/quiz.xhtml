@@ -17,7 +17,7 @@
         </c:metadata>
       
         <ui:insert name="nav">
-            <ui:include src="../Template/nav.xhtml" />
+            <ui:include src="../Template/navlogged.xhtml" />
         </ui:insert>
         <h3>Quiz <h:outputText value="#{coursesController.c.label}"></h:outputText></h3>
         <h:outputText rendered="#{quizController.questionList == null}"><h1>Quiz not avalable</h1></h:outputText>

@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -24,6 +25,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Courses")
 @Inheritance (strategy=InheritanceType.TABLE_PER_CLASS)
+@XmlRootElement
 public class Courses implements Serializable {
 
     @Id
