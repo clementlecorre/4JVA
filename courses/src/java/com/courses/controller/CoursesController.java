@@ -5,8 +5,8 @@
  */
 package com.courses.controller;
 
-import com.courses.criteria.CoursesManagement;
-import com.courses.criteria.ViewManagement;
+import com.courses.services.CoursesServices;
+import com.courses.services.ViewsServices;
 import com.courses.entity.Courses;
 import com.courses.entity.View;
 import static com.courses.entity.View_.dateView;
@@ -25,9 +25,9 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class CoursesController {
     @EJB
-    private CoursesManagement cm;
+    private CoursesServices cm;
     @EJB
-    private ViewManagement vm;
+    private ViewsServices vm;
     private List<Courses> coursesList;
     private Courses c;
     private int coursesId;
@@ -36,7 +36,7 @@ public class CoursesController {
     public Courses getC() {
         return c;
     }
-
+    
     public void setC(Courses c) {
         this.c = c;
     }
@@ -49,12 +49,12 @@ public class CoursesController {
         this.coursesId = coursesId;
     }
 
-    public void loadingCourses() {
+    public void loadingCourses(int userID) {
         c = this.cm.getQuestionListByCoursesId(this.coursesId);
         View v = vm.getViewByCoursesId(this.coursesId);
         Date date = new Date();
         Timestamp tt = new Timestamp(date.getTime());
-        View newview = new View(this.coursesId, tt);
+        View newview = new View(this.coursesId, userID, tt);
         if (v == null ) {
             vm.createView(newview);
         } else {
@@ -62,13 +62,18 @@ public class CoursesController {
         }
         c.setDetails(c.getDetails().replaceAll("(\\\\r\\\\n|\\\\n)", "\\\n"));   
     }
-    public String loadingViewedStatus(int coursesId) {
-        view = vm.getViewByCoursesId(coursesId);
-        if (view.getDateView() == null) {
-            return "No";
-        } else {
-            return view.getDateView().toString();
-        }
+    public String loadingViewedStatus(int coursesId, int userId ) {
+        if (userId != 0) {
+            view = vm.getViewByCoursesAndUser(coursesId, userId);
+            if (view.getDateView() == null) {
+                return "No";
+            } else {
+                return view.getDateView().toString();
+            }
+        }else{
+            return "no";
+        }  
+
 
     }
 

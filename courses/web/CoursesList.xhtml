@@ -13,7 +13,7 @@
     <h:body>        
       
         <ui:insert name="nav">
-            <ui:include src="Template/nav.xhtml" />
+            <ui:include src="Template/navlogged.xhtml" />
         </ui:insert>
         <div class="container">
           <table class="table table-striped">
@@ -29,8 +29,8 @@
                 <ui:repeat value="#{coursesController.coursesList}" var="courses" rendered="#{coursesController.coursesList !=null}">
                 <tr>
                     <th><h:outputText value="#{courses.label}"></h:outputText> </th>
-                    <th><h:outputText value="#{courses.rank}"></h:outputText> </th>
-                    <th><h:outputText value="#{coursesController.loadingViewedStatus(courses.idCourses)}"></h:outputText> </th>
+                    <th><h:outputText value="#{courses.rank}"></h:outputText><i class="fa fa-star"></i> </th>
+                    <th><h:outputText value="#{coursesController.loadingViewedStatus(courses.idCourses,loginController.loggedUser.id)}"></h:outputText> </th>
                     <th> 
                         <h:link value="Take Courses" outcome="/auth/Courses" class="btn btn-sm mybutton_cyano wow fadeIn animated animated" >
                         <f:param name="coursesID" value="#{courses.idCourses}" />

@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -24,12 +25,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ViewCourses")
 @Inheritance (strategy=InheritanceType.TABLE_PER_CLASS)
+@XmlRootElement
 public class View implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;   
-    private int idCourses;   
+    private int idCourses;  
+    private int idUser;  
     private Timestamp dateView;
     private Timestamp dateQuiz;
     private int percentQuiz;
@@ -43,15 +46,23 @@ public class View implements Serializable {
         this.percentQuiz = percentQuiz;
     }
 
-    public View(int idCourses, Timestamp dateView) {
+    public View(int idCourses, int idUser, Timestamp dateView) {
         this.idCourses = idCourses;
         this.dateView = dateView;
     }
 
-    public View(int idCourses, Timestamp dateQuiz, int percentQuiz) {
+    public View(int idCourses, int idUser, Timestamp dateQuiz, int percentQuiz) {
         this.idCourses = idCourses;
         this.dateQuiz = dateQuiz;
         this.percentQuiz = percentQuiz;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
     
     public int getIdCourses() {

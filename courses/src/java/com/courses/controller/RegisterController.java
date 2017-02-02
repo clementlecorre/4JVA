@@ -7,7 +7,7 @@
 package com.courses.controller;
 
 import com.courses.entity.User;
-import com.courses.criteria.UserManagement;
+import com.courses.services.UsersServices;
 import com.courses.services.Base64;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -24,7 +24,7 @@ import javax.faces.context.FacesContext;
 public class RegisterController {
     
     @EJB
-    private UserManagement um;
+    private UsersServices um;
     private User user;
     
     public RegisterController(){

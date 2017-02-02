@@ -1,13 +1,13 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      template="Template/logged.xhtml"
+      template="../Template/logged.xhtml"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     
     <ui:define name="content">
         <h1>Your result quiz !! </h1>
         <br/><br/>
-        <h3><h:outputText value="#{quizController.checkReponse(coursesController.coursesId)}"></h:outputText></h3>
+        <h3><h:outputText value="#{quizController.checkAnswer(coursesController.coursesId)}"></h:outputText></h3>
         <hr/>
         <h:graphicImage class="rotate center-block" library="img" name="icon/medal.svg" />
         <hr/>
