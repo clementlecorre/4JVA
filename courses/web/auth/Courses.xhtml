@@ -13,7 +13,7 @@
     <h:body>        
         <c:metadata>
             <c:viewParam name="coursesID" value="#{coursesController.coursesId}" />
-            <c:viewAction action="#{coursesController.loadingCourses}" />
+            <c:viewAction action="#{coursesController.loadingCourses(loginController.loggedUser.id)}" />
         </c:metadata>
         
         <ui:insert name="nav">

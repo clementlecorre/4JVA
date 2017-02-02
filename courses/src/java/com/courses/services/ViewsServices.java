@@ -7,6 +7,7 @@ package com.courses.services;
 
 import com.courses.entity.View;
 import java.sql.Timestamp;
+import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -51,7 +52,7 @@ public class ViewsServices {
     }
 
     @Transactional
-    public void updateQuiz(int idCourses, Timestamp date, int percentQuiz) {
+    public void updateQuiz(int idCourses, int userID, Timestamp date, int percentQuiz) {
 
         CriteriaBuilder cb = this.em.getCriteriaBuilder();
         // create update
@@ -62,6 +63,7 @@ public class ViewsServices {
         update.set("dateQuiz", date);
         update.set("percentQuiz", percentQuiz);
         update.where(cb.equal(e.get("idCourses"), idCourses));
+        update.where(cb.equal(e.get("idUser"), userID));
         // perform update
         this.em.createQuery(update).executeUpdate();
     }
@@ -75,5 +77,17 @@ public class ViewsServices {
         View v = this.em.createQuery(query).getSingleResult();
         return v;
 
+    }
+    @Transactional
+    public View getViewByCoursesAndUser(int coursesID, int userID) {
+        CriteriaBuilder cb = this.em.getCriteriaBuilder();
+        CriteriaQuery<View> query = cb.createQuery(View.class);
+        Root e = query.from(View.class);
+        query.where(
+                cb.equal(e.get("idCourses"), coursesID),
+                cb.equal(e.get("idUser"), userID)
+        );
+        View v = this.em.createQuery(query).getSingleResult();
+        return v;
     }
 }

@@ -49,12 +49,12 @@ public class CoursesController {
         this.coursesId = coursesId;
     }
 
-    public void loadingCourses() {
+    public void loadingCourses(int userID) {
         c = this.cm.getQuestionListByCoursesId(this.coursesId);
         View v = vm.getViewByCoursesId(this.coursesId);
         Date date = new Date();
         Timestamp tt = new Timestamp(date.getTime());
-        View newview = new View(this.coursesId, tt);
+        View newview = new View(this.coursesId, userID, tt);
         if (v == null ) {
             vm.createView(newview);
         } else {
@@ -62,7 +62,12 @@ public class CoursesController {
         }
         c.setDetails(c.getDetails().replaceAll("(\\\\r\\\\n|\\\\n)", "\\\n"));   
     }
-    public String loadingViewedStatus(int coursesId) {
+    public String loadingViewedStatus(int coursesId, int userId ) {
+        if (userId != 0) {
+            view = vm.getViewByCoursesAndUser(coursesId, userId);
+        } else {
+            view = vm.getViewByCoursesId(coursesId);
+        }
         view = vm.getViewByCoursesId(coursesId);
         if (view.getDateView() == null) {
             return "No";
